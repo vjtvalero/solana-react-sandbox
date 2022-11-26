@@ -14,10 +14,10 @@ function App() {
           <Sidebar />
           <section className="w-full lg:w-4/5">
             <Routes>
-              <Route path="/" element={<Navigate to="/keypair" replace />} />
               <Route path="/keypair" element={<Keypair />} />
               <Route path="/balance" element={<Balance />} />
               <Route path="/airdrop" element={<Airdrop />} />
+              <Route path="*" element={<Navigate to="/keypair" replace />} />
             </Routes>
           </section>
         </div>
