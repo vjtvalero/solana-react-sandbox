@@ -53,13 +53,13 @@ export default function Header() {
                       <hr className="border-t mx-2 border-gray-400" />
                     </li>
                     <li>
-                      <MenuLink text="Testnet" active={false} />
+                      <MenuLink text="Testnet" active={false} disabled={true} />
                     </li>
                     <li>
                       <hr className="border-t mx-2 border-gray-400" />
                     </li>
                     <li>
-                      <MenuLink text="Mainnet" active={false} />
+                      <MenuLink text="Mainnet" active={false} disabled={true} />
                     </li>
                   </ul>
                 </div>
@@ -72,7 +72,7 @@ export default function Header() {
   );
 }
 
-function MenuLink({ active, text }) {
+function MenuLink({ active, text, disabled = false }) {
   return active ? (
     <a
       href="#!"
@@ -81,7 +81,7 @@ function MenuLink({ active, text }) {
       {text}
     </a>
   ) : (
-    <a href="#!" className="px-4 py-2 block hover:bg-gray-400 no-underline hover:no-underline">
+    <a href="#!" className={`px-4 py-2 block no-underline hover:no-underline ${disabled ? 'text-gray-300' : 'hover:bg-gray-400'}`}>
       {text}
     </a>
   );

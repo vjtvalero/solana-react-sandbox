@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Airdrop from './components/pages/Airdrop';
 import Balance from './components/pages/Balance';
 import Keypair from './components/pages/Keypair';
+import Transfer from './components/pages/Transfer';
 import Sidebar from './components/Sidebar';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
               <Route path="/keypair" element={<Keypair />} />
               <Route path="/balance" element={<Balance />} />
               <Route path="/airdrop" element={<Airdrop />} />
+              <Route path="/transfer" element={<Transfer />} />
               <Route path="*" element={<Navigate to="/keypair" replace />} />
             </Routes>
           </section>
