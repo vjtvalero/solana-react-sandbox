@@ -6,6 +6,7 @@ export const MENU_OPTIONS = [
   { id: 2, name: 'balance' },
   { id: 3, name: 'airdrop' },
   { id: 4, name: 'transfer' },
+  { id: 5, name: 'wallet' },
 ];
 
 export default function useMenu() {

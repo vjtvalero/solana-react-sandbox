@@ -12,7 +12,6 @@ export default function Sidebar() {
       <div
         className="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20"
         style={{ top: '6em' }}
-        id="menu-content"
       >
         <ul className="list-reset py-2 md:py-0">
           <MenuLink text="Keypair" active={active === 1} onClick={() => setActive(1)} to="/keypair" />
@@ -28,10 +27,22 @@ export default function Sidebar() {
       <div
         className="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20"
         style={{ top: '6em' }}
-        id="menu-content"
       >
         <ul className="list-reset py-2 md:py-0">
           <MenuLink text="Transfer" active={active === 4} onClick={() => setActive(4)} to="/transfer" />
+        </ul>
+      </div>
+
+      <br />
+
+      {/* Challenge 3 */}
+      <p className="text-base font-bold py-2 lg:pb-6 text-gray-700">Challenge 3</p>
+      <div
+        className="w-full sticky inset-0 hidden max-h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20"
+        style={{ top: '6em' }}
+      >
+        <ul className="list-reset py-2 md:py-0">
+          <MenuLink text="Wallet" active={active === 5} onClick={() => setActive(5)} to="/wallet" />
         </ul>
       </div>
     </div>
