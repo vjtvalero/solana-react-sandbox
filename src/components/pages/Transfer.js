@@ -20,6 +20,7 @@ export default function Transfer() {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [signature, setSignature] = useState('');
+  const { network } = useContext(NetworkContext);
 
   async function transfer() {
     try {
@@ -36,7 +37,7 @@ export default function Transfer() {
       setMessage('');
       setLoading(true);
 
-      const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+      const connection = new Connection(clusterApiUrl(network), 'confirmed');
       const fromSecretKey = Uint8Array.from(privateKey.split(',').map(Number));
       const from = Keypair.fromSecretKey(fromSecretKey);
 
@@ -182,11 +183,11 @@ export default function Transfer() {
                   <p className="break-words">
                     Explore transaction:{' '}
                     <a
-                      href={`${process.env.REACT_APP_EXPLORER_URL}/tx/${signature}?cluster=devnet`}
+                      href={`${process.env.REACT_APP_EXPLORER_URL}/tx/${signature}?cluster=${network}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500"
-                    >{`${process.env.REACT_APP_EXPLORER_URL}/tx/${signature}?cluster=devnet`}</a>
+                    >{`${process.env.REACT_APP_EXPLORER_URL}/tx/${signature}?cluster=${network}`}</a>
                   </p>
                 )}
               </>

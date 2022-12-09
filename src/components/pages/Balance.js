@@ -1,5 +1,6 @@
 import { clusterApiUrl, Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 import Spinner from '../utils/Spinner';
 
 export default function Balance() {
@@ -7,6 +8,7 @@ export default function Balance() {
   const [balance, setBalance] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const { network } = useContext(NetworkContext);
 
   async function getBalance() {
     try {
@@ -16,7 +18,7 @@ export default function Balance() {
       }
       setMessage('');
       setLoading(true);
-      const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+      const connection = new Connection(clusterApiUrl(network), 'confirmed');
       const walletBalance = await connection.getBalance(new PublicKey(publicKey));
       setBalance(parseInt(walletBalance) / LAMPORTS_PER_SOL);
     } catch (err) {

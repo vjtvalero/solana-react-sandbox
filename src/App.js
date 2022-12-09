@@ -6,11 +6,12 @@ import Keypair from './components/pages/Keypair';
 import Transfer from './components/pages/Transfer';
 import Wallet from './components/pages/Wallet';
 import Sidebar from './components/Sidebar';
+import { NetworkProvider } from './contexts/NetworkProvider';
 
 function App() {
   return (
     <Router>
-      <div>
+      <NetworkProvider>
         <Header />
         <div className="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
           <Sidebar />
@@ -25,7 +26,7 @@ function App() {
             </Routes>
           </section>
         </div>
-      </div>
+      </NetworkProvider>
     </Router>
   );
 }

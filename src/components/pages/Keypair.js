@@ -34,7 +34,7 @@ export default function KeypairPage() {
           </div>
           <div className="col-span-3">
             <div className="mb-3 xl:w-2/3">
-              <label for="publicKey" className="form-label inline-block mb-2 text-gray-700">
+              <label htmlFor="publicKey" className="form-label inline-block mb-2 text-gray-700">
                 Public Key
               </label>
               <input
@@ -63,7 +63,7 @@ export default function KeypairPage() {
               />
             </div>
             <div className="mb-3 xl:w-2/3">
-              <label for="privateKey" className="form-label inline-block mb-2 text-gray-700">
+              <label htmlFor="privateKey" className="form-label inline-block mb-2 text-gray-700">
                 Private Key
               </label>
               <input

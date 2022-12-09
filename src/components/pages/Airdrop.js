@@ -1,5 +1,6 @@
 import { clusterApiUrl, Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 import Spinner from '../utils/Spinner';
 
 export default function Airdrop() {
@@ -7,6 +8,7 @@ export default function Airdrop() {
   const [balance, setBalance] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const { network } = useContext(NetworkContext);
 
   async function transfer() {
     try {
@@ -18,7 +20,7 @@ export default function Airdrop() {
       setLoading(true);
 
       // request airdrop
-      const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
+      const connection = new Connection(clusterApiUrl(network), 'confirmed');
       const airDropSignature = await connection.requestAirdrop(new PublicKey(publicKey), 1 * LAMPORTS_PER_SOL);
       const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
       await connection.confirmTransaction({

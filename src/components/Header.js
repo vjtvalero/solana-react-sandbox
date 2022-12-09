@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { NetworkContext } from '../contexts/NetworkProvider';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { network, setNetwork } = useContext(NetworkContext);
+
+  function updateNetwork(value) {
+    setNetwork(value);
+    setIsMenuOpen(false);
+  }
 
   return (
     <div>
@@ -25,7 +32,7 @@ export default function Header() {
                     setIsMenuOpen((prev) => !prev);
                   }}
                 >
-                  Devnet
+                  {network}
                   <svg
                     className="pl-2 h-2 fill-current text-white"
                     version="1.1"
@@ -47,19 +54,23 @@ export default function Header() {
                 >
                   <ul className="list-reset">
                     <li>
-                      <MenuLink text="Devnet" active={true} />
+                      <MenuLink text="Devnet" active={network === 'devnet'} onClick={() => updateNetwork('devnet')} />
                     </li>
                     <li>
                       <hr className="border-t mx-2 border-gray-400" />
                     </li>
                     <li>
-                      <MenuLink text="Testnet" active={false} disabled={true} />
+                      <MenuLink
+                        text="Testnet"
+                        active={network === 'testnet'}
+                        onClick={() => updateNetwork('testnet')}
+                      />
                     </li>
                     <li>
                       <hr className="border-t mx-2 border-gray-400" />
                     </li>
                     <li>
-                      <MenuLink text="Mainnet" active={false} disabled={true} />
+                      <MenuLink text="Mainnet" active={network === 'mainnet'} disabled={true} />
                     </li>
                   </ul>
                 </div>
@@ -72,16 +83,21 @@ export default function Header() {
   );
 }
 
-function MenuLink({ active, text, disabled = false }) {
+function MenuLink({ active, text, disabled = false, onClick }) {
   return active ? (
     <a
       href="#!"
       className="px-4 py-2 block text-purple-600 font-bold hover:bg-purple-600 hover:text-white no-underline hover:no-underline"
+      onClick={onClick}
     >
       {text}
     </a>
   ) : (
-    <a href="#!" className={`px-4 py-2 block no-underline hover:no-underline ${disabled ? 'text-gray-300' : 'hover:bg-gray-400'}`}>
+    <a
+      href="#!"
+      className={`px-4 py-2 block no-underline hover:no-underline ${disabled ? 'text-gray-300' : 'hover:bg-gray-400'}`}
+      onClick={onClick}
+    >
       {text}
     </a>
   );
