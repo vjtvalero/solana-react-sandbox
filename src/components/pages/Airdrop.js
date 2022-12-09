@@ -1,10 +1,13 @@
 import { clusterApiUrl, Connection, LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import React, { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { NetworkContext } from '../../contexts/NetworkProvider';
 import Spinner from '../utils/Spinner';
 
 export default function Airdrop() {
-  const [publicKey, setPublicKey] = useState('');
+  const location = useLocation();
+  const airdropTo = new URLSearchParams(location.search).get('to');
+  const [publicKey, setPublicKey] = useState(airdropTo);
   const [balance, setBalance] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -21,7 +24,7 @@ export default function Airdrop() {
 
       // request airdrop
       const connection = new Connection(clusterApiUrl(network), 'confirmed');
-      const airDropSignature = await connection.requestAirdrop(new PublicKey(publicKey), 1 * LAMPORTS_PER_SOL);
+      const airDropSignature = await connection.requestAirdrop(new PublicKey(publicKey), 2 * LAMPORTS_PER_SOL);
       const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
       await connection.confirmTransaction({
         blockhash,
@@ -77,6 +80,7 @@ export default function Airdrop() {
                 id="publicKey"
                 placeholder="Public Key"
                 onChange={(e) => setPublicKey(e.target.value)}
+                defaultValue={airdropTo}
               />
             </div>
             <button

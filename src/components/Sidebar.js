@@ -28,7 +28,7 @@ export default function Sidebar() {
         style={{ top: '6em' }}
       >
         <ul className="list-reset py-2 md:py-0">
-          <MenuLink text="Wallet" active={active === 5} onClick={() => setActive(5)} to="/wallet" />
+          <MenuLink text="Phantom" active={active === 5} onClick={() => setActive(5)} to="/wallet" />
         </ul>
       </div>
     </div>

@@ -90,6 +90,7 @@ export default function KeypairPage() {
                 readOnly
                 value={privateKey}
               />
+              <p className="text-sm text-gray-500 pl-3">Copy this private key and store it to a safe place</p>
             </div>
           </div>
         </div>

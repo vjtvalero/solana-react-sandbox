@@ -56,10 +56,10 @@ export default function Wallet() {
             className="flex items-center mr-3 shadow bg-purple-700 hover:bg-purple-500 focus:shadow-outline focus:outline-none text-white text-sm md:text-base font-bold py-2 px-4 rounded"
             onClick={connectWallet}
           >
-            Connect Wallet
+            Connect Phantom Wallet
           </button>
         )}
-        {provider && walletKey && <p>Connected account! Your public address: {walletKey}</p>}
+        {provider && walletKey && <Connected walletKey={walletKey} />}
 
         {!provider && (
           <p>
@@ -73,5 +73,24 @@ export default function Wallet() {
         {message && <p className="text-red-500">{message}</p>}
       </div>
     </div>
+  );
+}
+
+function Connected({ walletKey }) {
+  return (
+    <>
+      <p>Connected account! Your public address: {walletKey}</p>
+      <p>
+        Click here to{' '}
+        <a href={`/transfer?to=${walletKey}`} className="text-blue-500">
+          transfer
+        </a>{' '}
+        or{' '}
+        <a href={`/airdrop?to=${walletKey}`} className="text-blue-500">
+          airdrop
+        </a>{' '}
+        SOL to this wallet
+      </p>
+    </>
   );
 }

@@ -8,14 +8,18 @@ import {
   SystemProgram,
   Transaction,
 } from '@solana/web3.js';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { NetworkContext } from '../../contexts/NetworkProvider';
 import Spinner from '../utils/Spinner';
 window.Buffer = window.Buffer || require('buffer').Buffer;
 
 export default function Transfer() {
+  const location = useLocation();
+  const transferTo = new URLSearchParams(location.search).get('to');
   const [publicKey, setPublicKey] = useState('');
   const [privateKey, setPrivateKey] = useState('');
-  const [toPublicKey, setToPublicKey] = useState('');
+  const [toPublicKey, setToPublicKey] = useState(transferTo);
   const [balance, setBalance] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
@@ -110,7 +114,8 @@ export default function Transfer() {
                 Enter Private Key
               </label>
               <input
-                type="text"
+                type="password"
+                autoComplete="new-password"
                 className="
                 form-control
                 block
@@ -161,6 +166,7 @@ export default function Transfer() {
                 id="toPublicKey"
                 placeholder="Public Key"
                 onChange={(e) => setToPublicKey(e.target.value)}
+                defaultValue={toPublicKey}
               />
             </div>
             <button
