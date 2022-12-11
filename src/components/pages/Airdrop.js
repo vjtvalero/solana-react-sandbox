@@ -24,12 +24,12 @@ export default function Airdrop() {
 
       // request airdrop
       const connection = new Connection(clusterApiUrl(network), 'confirmed');
-      const airDropSignature = await connection.requestAirdrop(new PublicKey(publicKey), 2 * LAMPORTS_PER_SOL);
+      const signature = await connection.requestAirdrop(new PublicKey(publicKey), 2 * LAMPORTS_PER_SOL);
       const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
       await connection.confirmTransaction({
         blockhash,
         lastValidBlockHeight,
-        airDropSignature,
+        signature,
       });
 
       // get the new balance
