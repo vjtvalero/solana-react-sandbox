@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/solana-react-sandbox/static/css/main.4efb37a3.css",
-    "main.js": "/solana-react-sandbox/static/js/main.9cb9527c.js",
+    "main.js": "/solana-react-sandbox/static/js/main.f21a7f7d.js",
     "index.html": "/solana-react-sandbox/index.html"
   },
   "entrypoints": [
     "static/css/main.4efb37a3.css",
-    "static/js/main.9cb9527c.js"
+    "static/js/main.f21a7f7d.js"
   ]
 }
