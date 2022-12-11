@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, HashRouter } from 'react-router-dom';
 import Header from './components/Header';
 import Airdrop from './components/pages/Airdrop';
 import Balance from './components/pages/Balance';
@@ -10,7 +10,7 @@ import { NetworkProvider } from './contexts/NetworkProvider';
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <NetworkProvider>
         <Header />
         <div className="container w-full flex flex-wrap mx-auto px-2 pt-8 lg:pt-16 mt-16">
@@ -27,7 +27,7 @@ function App() {
           </section>
         </div>
       </NetworkProvider>
-    </Router>
+    </HashRouter>
   );
 }
 
