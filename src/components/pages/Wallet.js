@@ -1,16 +1,6 @@
-import {
-  clusterApiUrl,
-  Connection,
-  Keypair,
-  LAMPORTS_PER_SOL,
-  PublicKey,
-  sendAndConfirmTransaction,
-  SystemProgram,
-  Transaction,
-} from '@solana/web3.js';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Spinner from '../utils/Spinner';
+import { Link } from 'react-router-dom';
 
 export default function Wallet() {
   const [provider, setProvider] = useState(null);
@@ -82,13 +72,13 @@ function Connected({ walletKey }) {
       <p>Connected account! Your public address: {walletKey}</p>
       <p>
         Click here to{' '}
-        <a href={`/transfer?to=${walletKey}`} className="text-blue-500">
+        <Link to={`/transfer?to=${walletKey}`} className="text-blue-500">
           transfer
-        </a>{' '}
+        </Link>{' '}
         or{' '}
-        <a href={`/airdrop?to=${walletKey}`} className="text-blue-500">
+        <Link to={`/airdrop?to=${walletKey}`} className="text-blue-500">
           airdrop
-        </a>{' '}
+        </Link>{' '}
         SOL to this wallet
       </p>
     </>
